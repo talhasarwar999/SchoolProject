@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %} School {% endblock title %}
+{% block body %}
+{% load customtag %}
+{% load humanize %}
+
+		<div class="content-wrapper">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-1">
+            <div class="col-sm-8">
+              <h1>Invoices</h1>
+            </div>
+            <div class="col-sm-4">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">
+<a class="btn btn-primary" href="/appURL/createinvoice/"><i
+    class="fas fa-plus"></i> New Invoice</a>
+</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              
+              <div class="card">
+                
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <div class="offset-md-8 col-md-4">
+                      	<form class="my-2 mx-5 mr-auto">     
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="user-input_invoice">
+          </form>
+                      </div>
+  <div class="table-responsive">
+    <table id="invoicetable_invoice" class="table table-bordered table-hover" data-page-length='100'>
+      <thead class="thead-light">
+        <tr>
+          <th>S/N</th>
+          <th>Invoice</th>
+          <th>Session Name</th>
+          <th>Total Payable</th>
+          <th>Total Paid</th>
+          <th>Balance</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+      	{% for stu in invoice %}
+        
+          <tr class='clickable-row' data-href="/appURL/getinvoicerecord/{{stu.id}}">
+            <td>{{forloop.counter}}</td>
+            <td>{{stu.studentnameI}}</td>
+            <td>{{stu.sessionnameI}}</td>
+            <td>{{stu.total_amount_payable | intcomma}}</td>
+            <td>{{stu.total_amount_paid | intcomma }}</td>
+            <td>{{stu.balance | intcomma }}</td>
+            <td><a class="btn btn-success btn-sm"
+              href="/appURL/addreceipt/{{stu.id}}">Add new
+              receipt</a></td>
+   
+
+           
+
+          </tr>
+         
+          {% endfor %}
+          </tbody>
+        
+
+    </table>
+  </div>
+
+                    </div>
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- ./card-body -->
+
+              </div>
+              
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+		{% endblock body %}

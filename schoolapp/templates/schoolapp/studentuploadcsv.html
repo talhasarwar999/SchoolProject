@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %} School {% endblock title %}
+{% block body %}
+
+<div class="content-wrapper">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-1">
+            <div class="col-sm-8">
+              <h1>
+  Upload Bulk Students from file
+</h1>
+            </div>
+            <div class="col-sm-4">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"></li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              
+              <div class="card">
+                
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      
+
+  <div class="col alert alert-info">
+    <h5>Instruction</h5>
+    <p>Please <a href="/static/student_template.csv" download>download the CSV file attached here</a>. Fill in the sheet and upload the same file back to this page. DO NOT EDIT THE FIRST ROW</p>
+  </div>
+
+  <form method="POST" action="/appURL/uploadscsv/" enctype="multipart/form-data">
+  	{% csrf_token %}
+
+<div class="form-group row">
+  <label class="col-sm-3 col-form-label" for="id_csv_file">
+    Csv file
+    
+  </label>
+  <input type="file" name="importData" required>
+    <p>Please select format of file.</p>
+    <select name="file-format" class="form-control my-3" required>
+        <option selected>Choose format...</option>
+        <option>CSV</option>
+        <option>JSON</option>
+      </select>
+    <button class="btn btn-primary" type="submit">Import</button>
+  </form>
+
+
+                    </div>
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- ./card-body -->
+
+              </div>
+              
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+
+{% endblock body %}

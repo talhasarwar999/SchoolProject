@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %} School {% endblock title %}
+{% block body %}
+		<div class="content-wrapper">
+      <section class="content-header"> 
+        <div class="container-fluid">
+          <div class="row mb-1">
+            <div class="col-sm-8">
+              <h1>Students</h1>
+            </div>
+            <div class="col-sm-4">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">
+          <a class="btn btn-primary" href="/appURL/createstudent/"><i
+    class="fas fa-plus"></i> New student</a>
+<a class="btn btn-primary" href="/appURL/uploadstudent/"><i
+    class="fas fa-upload"></i> Upload students</a>
+</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              
+              <div class="card">
+                
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <div class="offset-md-8 col-md-4">
+                      	<form class="my-2 mx-5 mr-auto">     
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="user-input">
+          </form>
+                      </div>
+  <div class="table-responsive">
+    <table id="userTable" class="table table-bordered table-hover" data-page-length='100'>
+      {% include 'schoolapp/ajax_student_record.html' %}
+    </table>
+ 
+  </div>
+
+   <nav aria-label="Page navigation example">
+  <ul class="pagination">
+     {% if allStudent.has_previous %} <!-- &laquo; -->
+      <li class="page-item"><a class="page-link" href="?page={{ allStudent.previous_page_number}}">Previous</a></li>
+    {% else %}
+      <li class="disabled page-item"><a class="page-link">Previous</a></li>
+    {% endif %}
+    {% for i in allStudent.paginator.page_range %}
+      {% if allStudent.number == i %}
+        <li class="active page-item"><a class="page-link">{{ i }}</a> <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if allStudent.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ allStudent.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="disabled page-item"><a class="page-link">Next</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+                    </div>
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- ./card-body -->
+
+              </div>
+              
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+		{% endblock body %}

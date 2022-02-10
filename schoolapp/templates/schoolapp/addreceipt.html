@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %} School {% endblock title %}
+{% block body %}
+{% load customtag %}
+<!-- Content Wrapper. Contains page content -->
+{% load crispy_forms_tags %}
+<div class="content-wrapper">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-1">
+          <div class="col-sm-8">
+            <h1></h1>
+          </div>
+          <div class="col-sm-4">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            
+            <div class="card">
+              
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    
+
+<div class="row">
+<div class="col-8">
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{receipt_form|crispy}}
+
+    <input type="submit" class="btn btn-primary" value="Add payment">
+
+  </form>
+</div>
+
+<div class="col-4">
+  <div class="alert alert-info" role="alert">
+    <h3>INVOICE</h3>
+    <p>{{invoice.studentnameI.first_name}} {{invoice.studentnameI.sur_name}} {% if invoice.studentnameI.other_name %} {{invoice.studentnameI.other_name}} {% endif %}</p>
+    <hr>
+    <ul>
+
+      <li>Session: {{invoice.sessionnameI}}</li>
+      <li>Term: {{invoice.termnameI}}</li>
+      <li>Class: {{invoice.classnameI}}</li>
+      <li>Total Amount Payable: {{allfee.1|sub:alls.0}}
+      </li>
+      <li>Total Amount Paid: {{alls.0}}</li>
+      <li><strong>Balance: {{allfee.1}}</strong></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+
+
+
+                  </div>
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- ./card-body -->
+
+            </div>
+            
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock body %}

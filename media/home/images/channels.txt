@@ -1,0 +1,26 @@
+pip install channels
+
+<<<.......................asgi.py.......................>>>
+
+from channels.routing import ProtocolTypeRouter, URLRouter
+from home.consumers import *
+ws_patterns = [
+	path('test/',)
+]
+application = ProtocolTypeRouter({
+"websocket":URLRouter(ws_patterns)
+})
+
+<<<.......................consumers.py.......................>>>
+from channels.generic.websocket import WebsocketConsumer
+from asgiref.sync import async_to_sync
+class TestConsumer(WebsocketConsumer)
+def connect(self):
+   self.room_name = "test_consumer"
+   self.room_group_name = "test_consumer"
+   async_to_sync(self.channel_layer.group_add)(self.room_name,self.room_group_name)
+   self.accept()
+   self.send(text_data=json.dumps({'status':'connected'}))
+def receive(self, text_data=None, bytes_data=None):
+   
+def disconnect(self, close_code):

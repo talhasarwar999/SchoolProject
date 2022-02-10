@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %} School {% endblock title %}
+{% block body %}
+{% load customtag %}
+<div class="content-wrapper">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-1">
+            <div class="col-sm-8">
+              <h1></h1>
+            </div>
+            <div class="col-sm-4">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"></li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              
+              {% for res in result %}
+    <div class="card">
+      <div class="card-header">
+        {{res.studentnameCR}} {{res.sessionnameCR}}  {{res.termnameCR}} 
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-sm">
+          <thead class="thead-light">
+            <tr>
+              <th></th>
+              <th>Subject</th>
+              <th>Test Score</th>
+              <th>Exam Score</th>
+              <th>Total Score</th>
+              <th>Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in res.studentresult.all %}
+              <tr>
+                <td>{{r.id}}</td>
+                <td>{{r.subjectCR}}</td>
+                <td>{{r.test_score}}</td>
+                <td>{{r.exem_score}}</td>
+                <td>{{r.test_score|add:r.exem_score}}</td>
+                <td></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"></td>
+              <td>{{res.total}}</td>
+              <td>{{res.totals}}</td>
+              <td>{{res.total|add:res.totals}}</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table> </div></div> 
+        {% endfor %}
+      </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    {% endblock body %}

@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block title %} School {% endblock title %}
+{% block body %}
+{% load widget_tweaks %}
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-1">
+        <div class="col-sm-8">
+          <h1>
+
+
+Add new invoice
+
+
+</h1>
+        </div>
+        <div class="col-sm-4">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"></li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          
+          <div class="card">
+            
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  
+
+                  <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-sm-6">
+                        {% for field in form %}
+                        <div class="form-group row">
+                          <label class="col col-form-label" for="{{ field.auto_id }}">
+                            {{ field.label }}
+                            {% for error in field.errors %}
+                            <small id="{{ field.auto_id }}" class="text-danger">{{ error }}</small>
+                            {% endfor %}
+                          </label>
+                          <div class="col">
+                            {{ field | add_class:"form-control"}}
+                            {% if field.help_text %}
+                            <small>{{ field.help_text|safe }}</small>
+                            {% endif %}
+                          </div>
+                        </div>
+                        {% endfor %}
+                      </div>
+                      <div class="col-sm-6">
+                        {{ items.management_form }}
+                        <div class="text-center">FEE STRUCTURE</div>
+                        <div class="row">
+                          <div class="col"><strong>Fee Type</strong></div>
+                          <div class="col"><strong>Amount</strong></div>
+                          
+                          
+                        </div>
+                        
+                        {% for item in items %}
+                        
+                        <div class="form-group row items-group">
+                          {{ item.id}}
+                          <div class="col">{{ item.fee_type | add_class:"form-control"}}</div>
+                          <div class="col">{{ item.feeamount | add_class:"form-control"}}</div>
+                          {% if object %}
+                          {% if items.can_delete %}
+                          <div>{{item.DELETE }}</div>
+                          {% endif %}
+                          {% endif %}
+                        </div>
+                       
+                           
+                        {% endfor %}
+                      </div>
+                    </div>
+                  
+                  
+                  
+                    {% if object %}
+                    <input type="submit" class="btn btn-primary" value="Update Record">
+                    {% else %}
+                    <input type="submit" class="btn btn-primary" value="Add new invoice">
+                    {% endif %}
+                  </form>
+                  <script>
+  $(".items-group").formset(
+    {
+      prefix: '{{ items.prefix }}',
+      deleteText: "<div class='btn btn-danger btn-circle'><i class='fas fa-trash'></i></div>",
+      addText: "<div class='btn btn-success btn-circle'><i class='fas fa-plus'></i></div>"
+    }
+  )
+</script>
+                 
+<hr>
+
+
+
+                </div>
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- ./card-body -->
+
+          </div>
+          
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!--/. container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+
+{% endblock body %}
+

@@ -1,0 +1,43 @@
+from django.urls import path
+from . import views
+
+
+
+urlpatterns = [
+  path('', views.SchoolApps,name="schoolapps"),
+  path('studentrecord/', views.StudentRecord,name="studentrecord"),
+  path('staffrecord/', views.StaffRecord,name="staffrecord"),
+  path('invoicerecord/', views.InvoiceRecord,name="invoicerecord"),
+  path('createstudent/', views.CreateStudent,name="createstudent"),
+  path('getstudentsrecord/<int:id>/', views.GetStudentsRecord,name="getstudentsrecord"),
+  path('updatestudentform/<int:id>', views.UpdateStudent,name="updatestudentform"),
+  path('deletestudentform/<int:id>', views.DeleteStudentForm,name="deletestudentform"),
+  path('createstaff/', views.CreateStaff,name="createstaff"),
+  path('getstaffrecord/<int:id>', views.GetStaffRecord,name="getstaffrecord"),
+  path('updatestaff/<int:id>/', views.UpdateStaff,name="updatestaff"),
+  path('deletestaff/<int:id>', views.DeleteStaff,name="deletestaff"),
+  path('getinvoicerecord/<int:id>', views.GetInvoiceRecord,name="getinvoicerecord"),
+  path('deleteinvoice/<int:id>', views.DeleteInvoice,name="deleteinvoice"),
+  path('viewresult/', views.ViewResult,name="viewresult"),
+  path('viewsession/', views.CreateSession,name="viewsession"),
+  path('updatesession/<int:id>', views.UpdateSession,name="updatesession"),
+  path('deletesession/<int:id>', views.DeleteSession,name="deletesession"),
+  path('viewterm/', views.CreateTerm,name="viewterm"),
+  path('updateterm/<int:id>', views.UpdateTerm,name="updateterm"),
+  path('deleteterm/<int:id>', views.DeleteTerm,name="deleteterm"),
+  path('viewsubject/', views.CreateSubject,name="viewsubject"),
+  path('updatesubject/<int:id>', views.UpdateSubject,name="updatesubject"),
+  path('deletesubject/<int:id>', views.DeleteSubject,name="deletesubject"),
+  path('viewclass/', views.CreateClass, name="viewclass"),
+  path('updateclass/<int:id>', views.UpdateClass, name="updateclass"),
+  path('deleteclass/<int:id>', views.DeleteClass, name="deleteclass"),
+  path('uploadstudent/', views.UploadStudent, name="uploadstudent"),
+  path('uploadscsv/', views.upload_csv, name='uploadscsv'),
+  path('sessionandterm/', views.Session_Term, name='sessionandterm'),
+  path('student/delete/<int:id>', views.Delete_Confirm, name='deleteconfirm'),
+  path('staff/delete/<int:id>', views.Delete_Confirm_Staff, name='deleteconfirm_staff'),
+  path('invoice/delete/<int:id>', views.Delete_Confirm_Invoice, name='deleteconfirm_invoice'),
+  path('addreceipt/<int:id>', views.AddReceipt, name='addreceipt'),
+  path("createinvoice/", views.InvoiceCreateView.as_view(), name="invoice-create"),
+  path("updateinvoice/<int:pk>/", views.InvoiceUpdateView.as_view(), name="invoice-update"),
+]

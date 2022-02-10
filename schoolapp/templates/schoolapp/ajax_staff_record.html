@@ -1,0 +1,22 @@
+<thead class="thead-light">
+    <tr>
+      <th>S/N</th>
+      <th>Fullname</th>
+      <th>Gender</th>
+      <th>Mobile Phone Number</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for stu in allStaff %}
+    
+      <tr class='clickable-row' data-href="/appURL/getstaffrecord/{{stu.id}}">
+        <td>{{forloop.counter}}</td>
+        <td>{{stu.first_name}} {{stu.sur_name}}</td>
+        <td>{{stu.gender}}</td>
+        <td>{{stu.mobile_no}}</td>
+        <td>{{stu.status}}</td>
+        
+      </tr>
+      {% endfor %}
+      </tbody>

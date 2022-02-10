@@ -1,0 +1,63 @@
+ {% extends 'base.html' %}
+{% block title %} School {% endblock title %}
+{% block body %}
+{% load crispy_forms_tags %}
+ <div class="content-wrapper">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-1">
+            <div class="col-sm-8">
+              <h1>
+  
+</h1>
+            </div>
+            <div class="col-sm-4">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"></li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              
+              <div class="card">
+                
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      
+  <div class="row">
+    <div class="col-sm-12">
+       <form action="/appURL/updateterm/{{update_term.id}}" method="POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+    {{edit_term|crispy}}
+    <input type="submit" class="btn btn-primary" value="Add new Staff">
+</form>
+    </div>
+  </div>
+
+
+                    </div>
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- ./card-body -->
+
+              </div>
+              
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    {% endblock body %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %} School {% endblock title %}
+{% block body %}
+		<div class="content-wrapper">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-1">
+            <div class="col-sm-8">
+              <h1>Staffs</h1>
+            </div>
+            <div class="col-sm-4">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">
+<a class="btn btn-primary" href="/appURL/createstaff/"><i
+    class="fas fa-plus"></i> New Staff</a>
+</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              
+              <div class="card">
+                
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <div class="offset-md-8 col-md-4">
+                      	<form class="my-2 mx-5 mr-auto">     
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="user-input_staff">
+          </form>
+                      </div>
+  <div class="table-responsive">
+    <table id="studenttable_staff" class="table table-bordered table-hover" data-page-length='100'>
+      {% include 'schoolapp/ajax_staff_record.html' %}
+    </table>
+  </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+       {% if allStaff.has_previous %} <!-- &laquo; -->
+        <li class="page-item"><a class="page-link" href="?page={{ allStaff.previous_page_number}}">Previous</a></li>
+      {% else %}
+        <li class="disabled page-item"><a class="page-link">Previous</a></li>
+      {% endif %}
+      {% for i in allStaff.paginator.page_range %}
+        {% if allStaff.number == i %}
+          <li class="active page-item"><a class="page-link">{{ i }}</a> <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if allStaff.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ allStafft.next_page_number }}">Next</a></li>
+      {% else %}
+        <li class="disabled page-item"><a class="page-link">Next</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+                    </div>
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- ./card-body -->
+
+              </div>
+              
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+		{% endblock body %}
